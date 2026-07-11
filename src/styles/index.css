@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-ink font-body antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  @apply bg-accent text-white;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[0.7rem] font-bold tracking-[0.18em] uppercase text-accent bg-accent-soft px-3.5 py-1.5 rounded-full;
+  }
+
+  .eyebrow-dark {
+    @apply inline-flex items-center gap-2 text-[0.7rem] font-bold tracking-[0.18em] uppercase text-gold-light bg-white/10 border border-white/15 px-3.5 py-1.5 rounded-full;
+  }
+
+  .glass {
+    @apply bg-white/[0.07] backdrop-blur-xl border border-white/[0.14];
+  }
+
+  .glass-light {
+    @apply bg-white/70 backdrop-blur-xl border border-white/60;
+  }
+
+  .card-elevated {
+    @apply bg-surface-card rounded-xl2 shadow-card border border-ink/[0.05] transition-all duration-500;
+  }
+
+  .card-elevated:hover {
+    @apply shadow-card-hover -translate-y-1.5;
+    border-color: rgba(37, 99, 235, 0.22);
+  }
+
+  .input-field {
+    @apply w-full px-5 py-3.5 bg-surface border border-ink/10 rounded-2xl text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-accent/60 focus:border-transparent transition;
+  }
+
+  .label-field {
+    @apply block text-ink/80 font-semibold mb-2 text-sm font-display;
+  }
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Ticket / boarding-pass perforation motif (signature element) */
+.ticket-notch {
+  position: relative;
+}
+.ticket-notch::before,
+.ticket-notch::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #f7f8fa;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ticket-notch::before {
+  left: -9px;
+}
+.ticket-notch::after {
+  right: -9px;
+}
+
+/* Logo marquee */
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
